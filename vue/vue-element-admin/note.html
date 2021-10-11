@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var test = {
+      "name": "vue-element-admin",
+      "version": "4.3.1",
+      "description": "A magical vue admin. An out-of-box UI solution for enterprise applications. Newest development stack of vue. Lots of awesome features",
+      "author": "Pan <panfree23@gmail.com>",
+      "scripts": {
+        "dev": "vue-cli-service serve",
+        "lint": "eslint --ext .js,.vue src",
+        "build:prod": "vue-cli-service build",
+        "build:stage": "vue-cli-service build --mode staging",
+        "preview": "node build/index.js --preview",
+        "new": "plop",
+        "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml",
+        "test:unit": "jest --clearCache && vue-cli-service test:unit",
+        "test:ci": "npm run lint && npm run test:unit"
+      },
+      "dependencies": {
+        //数据请求
+        "axios": "0.18.1",
+        //复制到剪切板，点击某一个按钮将指定内容复制到剪切板//https://clipboardjs.com/
+        "clipboard": "2.0.4",
+        //代码编辑器
+        "codemirror": "5.45.0",
+        //JSON网页编辑器
+        "jsonlint": "1.6.3",
+        //markdown文件编辑器插件
+        "tui-editor": "1.3.3",
+        //提供了es5、es6的polyfills，包括promises、symbols...
+        "core-js": "3.6.5",
+        //突出显示页面上的某一元素，用来制作网页功能指导//https://kamranahmed.info/driver.js/
+        "driver.js": "0.9.5",
+        //拖拽文件上传//https://www.dropzone.dev/js/
+        "dropzone": "5.5.1",
+        //百度图表插件库
+        "echarts": "4.2.1",
+        //element-UI组件库
+        "element-ui": "2.13.2",
+        //三者配合将JS数据保存为文件
+        "file-saver": "2.0.1",
+        "jszip": "3.2.1",
+        "xlsx": "0.14.1",
+        //css、html初始化
+        "normalize.css": "7.0.0",
+        //顶部的进度条
+        "nprogress": "0.2.0",
+        //用来做模糊查询的插件
+        "fuse.js": "3.4.4",
+        //封装起来的处理cookie的插件
+        "js-cookie": "2.2.0",
+        //数字滚动组件
+        "vue-count-to": "1.0.13",
+        //该工具库用来处理 url 中地址与参数，能够很方便得到我们想要的数据。
+        "path-to-regexp": "2.4.0",
+        //JavaScript Fullscreen API 的跨浏览器使用的简单包装器，它允许您将页面或任何元素带入全屏，消除浏览器实现差异
+        "screenfull": "4.2.0",
+        //可以拖拽排序的列表组件
+        "sortablejs": "1.8.4",
+        //基于并提供Sortable.js 的所有功能
+        "vuedraggable": "2.20.0",
+        //vue-splitpane主要是在页面展示一个或多个被分割的区块
+        "vue-splitpane": "1.0.4",
+        //
+        "pinyin": "2.9.0",
+        //
+        "script-loader": "0.7.2",
+        "vue-i18n": "7.3.2",
+        "vue": "2.6.10",
+        "vue-router": "3.0.2",
+        "vuex": "3.1.0"
+      },
+      "devDependencies": {
+        //
+        "@vue/cli-plugin-babel": "4.4.4",
+        "@vue/cli-plugin-eslint": "4.4.4",
+        "@vue/cli-service": "4.4.4",
+        "babel-eslint": "10.1.0",
+        "eslint": "6.7.2",
+        "eslint-plugin-vue": "6.2.2",
+        "vue-template-compiler": "2.6.10",
+        //使用命令行来生成一个模板文件
+        "plop": "2.3.0",
+        //sass，css预处理
+        "sass": "1.26.2",
+        "sass-loader": "8.0.2",
+        //PostCSS插件，用于解析 CSS 并使用Can I Use 中的值向 CSS 规则添加供应商前缀,简单来说就是css兼容插件
+        "autoprefixer": "9.5.1",
+        //
+        "mockjs": "1.0.1-beta3",
+        "@vue/cli-plugin-unit-jest": "4.4.4",
+        "@vue/test-utils": "1.0.0-beta.29",
+        "babel-jest": "23.6.0",
+        "babel-plugin-dynamic-import-node": "2.3.3",
+        "chalk": "2.4.2",
+        "chokidar": "2.1.5",
+        "connect": "3.6.6",
+        "html-webpack-plugin": "3.2.0",
+        "husky": "1.3.1",
+        "lint-staged": "8.1.5",
+        "runjs": "4.3.2",
+        "script-ext-html-webpack-plugin": "2.1.3",
+        "serve-static": "1.13.2",
+        "svg-sprite-loader": "4.1.3",
+        "svgo": "1.2.0",
+      },
+      "browserslist": [
+        "> 1%",
+        "last 2 versions"
+      ],
+      "bugs": {
+        "url": "https://github.com/PanJiaChen/vue-element-admin/issues"
+      },
+      "engines": {
+        "node": ">=8.9",
+        "npm": ">= 3.0.0"
+      },
+      "keywords": [
+        "vue",
+        "admin",
+        "dashboard",
+        "element-ui",
+        "boilerplate",
+        "admin-template",
+        "management-system"
+      ],
+      "license": "MIT",
+      "lint-staged": {
+        "src/**/*.{js,vue}": [
+          "eslint --fix",
+          "git add"
+        ]
+      },
+      "husky": {
+        "hooks": {
+          "pre-commit": "lint-staged"
+        }
+      },
+      "repository": {
+        "type": "git",
+        "url": "git+https://github.com/PanJiaChen/vue-element-admin.git"
+      }
+    }
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <title>Ionic App</title>
+  <!--<meta http-equiv="Content-Security-Policy" content="default-src * gap://ready file:;style-src * 'self' 'unsafe-inline'; img-src * 'self' data:; script-src * 'unsafe-inline' 'unsafe-eval'">-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <meta name="theme-color" content="#4e8ef7">
+  <style type="text/css">
+	body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+  </style>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=1xAwGzIPqMPXzWsafM9t4naxWQId6YU9"></script>
+  <script src="lushu.js"></script>
+
+  
+
+</head>
+<body>
+<div id="allmap"></div>
+  
+  
+</body>
+<script>
+	var p3,startPosition,endPosition,lushu;
+	var map = new BMap.Map("allmap");    // 创建Map实例
+	map.centerAndZoom(new BMap.Point(117.12876868467, 39.136901294962), 11);  // 初始化地图,设置中心点坐标和地图级别
+	map.setCurrentCity("天津");          // 设置地图显示的城市 此项是必须设置的
+	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+	var positions=[
+		{
+			"lat": 39.136901294962,
+			"lng": 117.12876868467
+		},
+		{
+			"lat": 39.136905646966,
+			"lng": 117.12876407327
+		},
+		{
+			"lat": 39.13047674678,
+			"lng": 117.12922001455
+		},
+		{
+			"lat": 39.129843106288,
+			"lng": 117.12960307303
+		},
+		{
+			"lat": 39.129478405136,
+			"lng": 117.12993782487
+		},
+		{
+			"lat": 39.129122961424,
+			"lng": 117.13030847226
+		},
+		{
+			"lat": 39.128778863598,
+			"lng": 117.13065988685
+		},
+		{
+			"lat": 39.128459613823,
+			"lng": 117.13107276153
+		},
+		{
+			"lat": 39.128103428802,
+			"lng": 117.13145902519
+		},
+		{
+			"lat": 39.127721936252,
+			"lng": 117.13183226623
+		},
+		{
+			"lat": 39.127307486359,
+			"lng": 117.13235064494
+		},
+		{
+			"lat": 39.126930895756,
+			"lng": 117.13280553685
+		},
+		{
+			"lat": 39.126486644051,
+			"lng": 117.13324574424
+		},
+		{
+			"lat": 39.12606939375,
+			"lng": 117.13375917603
+		},
+		{
+			"lat": 39.125661167824,
+			"lng": 117.13430505619
+		},
+		{
+			"lat": 39.125250490521,
+			"lng": 117.13478411454
+		},
+		{
+			"lat": 39.12480619884,
+			"lng": 117.13533365986
+		},
+		{
+			"lat": 39.124360794721,
+			"lng": 117.13582561433
+		},
+		{
+			"lat": 39.123845392744,
+			"lng": 117.13617363295
+		},
+		{
+			"lat": 39.123307642271,
+			"lng": 117.13655050946
+		},
+		{
+			"lat": 39.122715600972,
+			"lng": 117.13683212594
+		},
+		{
+			"lat": 39.122099009947,
+			"lng": 117.13712027561
+		},
+		{
+			"lat": 39.121464107891,
+			"lng": 117.13730582467
+		},
+		{
+			"lat": 39.120829765567,
+			"lng": 117.13737870606
+		},
+		{
+			"lat": 39.120229064179,
+			"lng": 117.13750606316
+		},
+		{
+			"lat": 39.119669909724,
+			"lng": 117.13760271123
+		},
+		{
+			"lat": 39.119215727914,
+			"lng": 117.13759630182
+		},
+		{
+			"lat": 39.118801460732,
+			"lng": 117.13758748308
+		},
+		{
+			"lat": 39.118292920393,
+			"lng": 117.13767003967
+		},
+		{
+			"lat": 39.117779819372,
+			"lng": 117.1377471554
+		},
+		{
+			"lat": 39.117272599934,
+			"lng": 117.13777991401
+		},
+		{
+			"lat": 39.116838737849,
+			"lng": 117.13780375999
+		},
+		{
+			"lat": 39.116483056504,
+			"lng": 117.13785081595
+		},
+		{
+			"lat": 39.116181109769,
+			"lng": 117.13781843596
+		},
+		{
+			"lat": 39.115909967955,
+			"lng": 117.13787727483
+		},
+		{
+			"lat": 39.115559600836,
+			"lng": 117.13788296821
+		},
+		{
+			"lat": 39.115296372558,
+			"lng": 117.1378851985
+		},
+		{
+			"lat": 39.115195834291,
+			"lng": 117.13787259336
+		},
+		{
+			"lat": 39.114988604952,
+			"lng": 117.13786507271
+		},
+		{
+			"lat": 39.114816322119,
+			"lng": 117.13794142377
+		},
+		{
+			"lat": 39.114568976185,
+			"lng": 117.13800791639
+		},
+		{
+			"lat": 39.114316751838,
+			"lng": 117.13807359141
+		},
+		{
+			"lat": 39.114135148027,
+			"lng": 117.1380807964
+		},
+		{
+			"lat": 39.113917477992,
+			"lng": 117.13811165778
+		}
+	];
+	setInterval(()=> {
+		if(startPosition==null){
+			startPosition=0;
+		}
+		var driving = new BMap.DrivingRoute(map);    //驾车实例
+		if(positions[startPosition]!=null&&positions[startPosition+1]!=null){
+			var p1=new BMap.Point(positions[startPosition].lng, positions[startPosition].lat);
+			var p2=new BMap.Point(positions[startPosition+1].lng, positions[startPosition+1].lat);
+			var distance=map.getDistance(p1,p2);
+			if(lushu==null||(distance>10&&!lushu.getMoving())){
+				console.log(positions[startPosition])
+				console.log(positions[startPosition+1])
+				driving.search(p1, p2);
+				driving.setSearchCompleteCallback(function (results) {
+					console.log(distance)
+					console.log(results.getPlan(0).getDistance(false))
+					if(results.getPlan(0).getDistance(false)<1500){
+						createLushu(driving);
+					}
+				});
+			}
+			startPosition++;
+		}
+	},5000);
+
+	function createLushu(driving){
+        var arrPois = [], plan = driving.getResults().getPlan(0);
+        for (var j = 0; j < plan.getNumRoutes(); j++) {
+            var route = plan.getRoute(j);
+            arrPois = arrPois.concat(route.getPath());
+        }
+        map.setViewport(arrPois);
+        if(lushu==null){
+            lushu = new BMapLib.LuShu(map, arrPois, {
+                defaultContent: "",
+                autoView: true,//是否开启自动视野调整，如果开启那么路书在运动过程中会根据视野自动调整
+                icon: new BMap.Icon('http://developer.baidu.com/map/jsdemo/img/car.png', new BMap.Size(52, 26), {anchor: new BMap.Size(27, 13)}),
+                speed: 1000,
+                enableRotation: true,//是否设置marker随着道路的走向进行旋转
+            });
+            lushu.start();
+        }else{
+            lushu.goPath(arrPois);
+        }
+    }
+  </script>
+</html>

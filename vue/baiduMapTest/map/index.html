@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Ionic App</title>
+	<!--<meta http-equiv="Content-Security-Policy" content="default-src * gap://ready file:;style-src * 'self' 'unsafe-inline'; img-src * 'self' data:; script-src * 'unsafe-inline' 'unsafe-eval'">-->
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="msapplication-tap-highlight" content="no">
+
+	<meta name="theme-color" content="#4e8ef7">
+	<style type="text/css">
+		body,
+		html,
+		#allmap {
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			margin: 0;
+			font-family: "΢���ź�";
+		}
+	</style>
+	<!-- <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=1xAwGzIPqMPXzWsafM9t4naxWQId6YU9"></script> -->
+
+	<!-- 百度地图数据可视化 -->
+	<!-- <script src="https://unpkg.com/mapvgl/dist/mapvgl.min.js"></script> -->
+	<!-- 如果使用到Three.js相关的图层需要引用 -->
+	<!-- <script src="https://unpkg.com/mapvgl/dist/mapvgl.threelayers.min.js"></script> -->
+
+	<script type="text/javascript"
+		src="https://api.map.baidu.com/api?v=1.0&&type=webgl&ak=IWNp0DUTwiXVpIBMzfhbKTQI61rjCZMm"></script>
+	<!-- <script src="//mapopen.bj.bcebos.com/github/BMapGLGLLib/Lushu/src/Lushu.min.js"></script> -->
+
+	<script src="1.js"></script>
+
+
+
+</head>
+
+<body>
+	<div id="allmap"></div>
+
+
+</body>
+<script>
+	var p3, startPosition, endPosition, lushu;
+	var map = new BMapGL.Map("allmap"); // ����Mapʵ��
+	map.centerAndZoom(new BMapGL.Point(117.12876868467, 39.136901294962), 11); // ��ʼ����ͼ,�������ĵ�����͵�ͼ����
+	// map.setCurrentCity("���"); // ���õ�ͼ��ʾ�ĳ��� �����Ǳ������õ�
+	map.enableScrollWheelZoom(true); //��������������
+
+	//������һЩ�������꣬ʵ��Ӧ����Ӧ�ô�gps���ռ�
+	var positions = [
+		// {
+		// 		"lat": 39.136901294962,
+		// 		"lng": 117.12876868467
+		// 	},
+		// 	{
+		// 		"lat": 39.136905646966,
+		// 		"lng": 117.12876407327
+		// 	},
+		// 	{
+		// 		"lat": 39.13047674678,
+		// 		"lng": 117.12922001455
+		// 	},
+		// 	{
+		// 		"lat": 39.129843106288,
+		// 		"lng": 117.12960307303
+		// 	},
+		// 	{
+		// 		"lat": 39.129478405136,
+		// 		"lng": 117.12993782487
+		// 	},
+		// 	{
+		// 		"lat": 39.129122961424,
+		// 		"lng": 117.13030847226
+		// 	},
+		{
+			"lat": 39.128778863598,
+			"lng": 117.13065988685
+		},
+		{
+			"lat": 39.128459613823,
+			"lng": 117.13107276153
+		},
+		{
+			"lat": 39.128103428802,
+			"lng": 117.13145902519
+		},
+		{
+			"lat": 39.127721936252,
+			"lng": 117.13183226623
+		},
+		{
+			"lat": 39.127307486359,
+			"lng": 117.13235064494
+		},
+		{
+			"lat": 39.126930895756,
+			"lng": 117.13280553685
+		},
+		{
+			"lat": 39.126486644051,
+			"lng": 117.13324574424
+		},
+		{
+			"lat": 39.12606939375,
+			"lng": 117.13375917603
+		},
+		{
+			"lat": 39.125661167824,
+			"lng": 117.13430505619
+		},
+		{
+			"lat": 39.125250490521,
+			"lng": 117.13478411454
+		},
+		{
+			"lat": 39.12480619884,
+			"lng": 117.13533365986
+		},
+		{
+			"lat": 39.124360794721,
+			"lng": 117.13582561433
+		},
+		{
+			"lat": 39.123845392744,
+			"lng": 117.13617363295
+		},
+		{
+			"lat": 39.123307642271,
+			"lng": 117.13655050946
+		},
+		{
+			"lat": 39.122715600972,
+			"lng": 117.13683212594
+		},
+		{
+			"lat": 39.122099009947,
+			"lng": 117.13712027561
+		},
+		{
+			"lat": 39.121464107891,
+			"lng": 117.13730582467
+		},
+		{
+			"lat": 39.120829765567,
+			"lng": 117.13737870606
+		},
+		{
+			"lat": 39.120229064179,
+			"lng": 117.13750606316
+		},
+		{
+			"lat": 39.119669909724,
+			"lng": 117.13760271123
+		},
+		{
+			"lat": 39.119215727914,
+			"lng": 117.13759630182
+		},
+		{
+			"lat": 39.118801460732,
+			"lng": 117.13758748308
+		},
+		{
+			"lat": 39.118292920393,
+			"lng": 117.13767003967
+		},
+		{
+			"lat": 39.117779819372,
+			"lng": 117.1377471554
+		},
+		{
+			"lat": 39.117272599934,
+			"lng": 117.13777991401
+		},
+		{
+			"lat": 39.116838737849,
+			"lng": 117.13780375999
+		},
+		{
+			"lat": 39.116483056504,
+			"lng": 117.13785081595
+		},
+		{
+			"lat": 39.116181109769,
+			"lng": 117.13781843596
+		},
+		{
+			"lat": 39.115909967955,
+			"lng": 117.13787727483
+		},
+		{
+			"lat": 39.115559600836,
+			"lng": 117.13788296821
+		},
+		{
+			"lat": 39.115296372558,
+			"lng": 117.1378851985
+		},
+		{
+			"lat": 39.115195834291,
+			"lng": 117.13787259336
+		},
+		{
+			"lat": 39.114988604952,
+			"lng": 117.13786507271
+		},
+		{
+			"lat": 39.114816322119,
+			"lng": 117.13794142377
+		},
+		{
+			"lat": 39.114568976185,
+			"lng": 117.13800791639
+		},
+		{
+			"lat": 39.114316751838,
+			"lng": 117.13807359141
+		},
+		{
+			"lat": 39.114135148027,
+			"lng": 117.1380807964
+		},
+		{
+			"lat": 39.113917477992,
+			"lng": 117.13811165778
+		}
+	];
+	setInterval(() => {
+		if (startPosition == null) {
+			startPosition = 0;
+		}
+		if (positions[startPosition] != null && positions[startPosition + 1] != null) {
+			var p1 = new BMapGL.Point(positions[startPosition].lng, positions[startPosition].lat);
+			var p2 = new BMapGL.Point(positions[startPosition + 1].lng, positions[startPosition + 1].lat);
+			var distance = map.getDistance(p1, p2);
+			// if (lushu == null || (distance > 10 && !lushu.getMoving())) {
+			// 	console.log(positions[startPosition])
+			// 	console.log(positions[startPosition + 1])
+			// 	console.log(distance)
+
+			//
+			// var driving = new BMapGL.DrivingRoute(map, {
+			// 	onSearchComplete: function (results) {
+			// 		console.log(results)
+			// 		console.log(results.getPlan())
+			// 		console.log(results.getPlan(0))
+			// 		console.log(results.getPlan(0).getDistance())
+			// if (results.getPlan(0).getDistance(false) < 1500) {
+			if (distance < 1500) {
+				// createLushu(driving);
+				createLushu([p1, p2]);
+			}
+			// 	}
+			// }); //�ݳ�ʵ��
+			// driving.search(p1, p2);
+			// driving.onSearchComplete(function (results) {
+			// 	console.log(results)
+			// 	console.log(results.getPlan())
+			// 	console.log(results.getPlan(1))
+			// 	console.log(results.getPlan(0).getDistance(false))
+			// 	if (results.getPlan(0).getDistance(false) < 1500) {
+			// 		createLushu(driving);
+			// 		createLushu([p1, p2]);
+			// 	}
+			// });
+			// }
+			startPosition++;
+		}
+	}, 5000);
+
+	function createLushu(driving) {
+		console.log(driving)
+		var arrPois = driving
+		// var arrPois = [],
+		// 	plan = driving.getResults().getPlan(0);
+		// console.log(plan)
+		// for (var j = 0; j < plan.getNumRoutes(); j++) {
+		// 	var route = plan.getRoute(j);
+		// 	arrPois = arrPois.concat(route.getPath());
+		// }
+		console.log(arrPois)
+
+		// debugger
+		if (lushu == null) {
+
+			map.setViewport(arrPois);
+
+			var marker = new BMapGL.Marker(arrPois[0]); // 创建标注   
+			map.addOverlay(marker); // 将标注添加到地图中
+			var marker1 = new BMapGL.Marker(arrPois[1]); // 创建标注   
+			map.addOverlay(marker1); // 将标注添加到地图中
+
+			lushu = new BMapGLLib.LuShu(map, arrPois, {
+				defaultContent: "",
+				autoView: true, //�Ƿ����Զ���Ұ���������������ô·�����˶������л������Ұ�Զ�����
+				icon: new BMapGL.Icon(
+					`data:image/png;base64,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`,
+					new BMapGL.Size(48, 48), {
+						anchor: new BMapGL.Size(24, 24)
+					}),
+				speed: 1000,
+				enableRotation: true, //�Ƿ�����marker���ŵ�·�����������ת
+			});
+			lushu.start();
+		} else {
+			console.log(arrPois)
+
+			var marker = new BMapGL.Marker(arrPois[0]); // 创建标注   
+			map.addOverlay(marker); // 将标注添加到地图中
+			var marker1 = new BMapGL.Marker(arrPois[1]); // 创建标注   
+			map.addOverlay(marker1); // 将标注添加到地图中
+
+			var distance = this.map.getDistance(arrPois[0], arrPois[1]);
+			console.log(distance);
+			lushu._opts.speed = distance / 5;
+
+			// console.log(this.carlineLayer);
+			// this.carlineLayer.options.step = distance;
+			lushu.goPath(arrPois);
+		}
+	}
+</script>
+
+</html>
