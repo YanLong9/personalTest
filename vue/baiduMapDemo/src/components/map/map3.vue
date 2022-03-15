@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import ConfigJson from './custom_map_config.json'; //地图图层样式文件
+import ConfigJson from './custom_map_config.json' //地图图层样式文件
 export default {
   name: 'MapContainer',
   data() {
@@ -295,32 +295,32 @@ export default {
         { lng: 116.308603, lat: 40.055993 },
         { lng: 116.308131, lat: 40.05589 }
       ]
-    };
+    }
   },
   mounted() {
-    this.initMap();
+    this.initMap()
   },
   methods: {
     initMap() {
       // **********************************************************************************//
-      this.map = new BMapGL.Map('mapContainer'); // 创建地图实例
-      var point = new BMapGL.Point(119.997283, 30.280812); // 创建点坐标
-      this.map.centerAndZoom(point, 19); // 初始化地图，设置中心点坐标和地图级别
-      this.map.enableScrollWheelZoom(true); //开启鼠标滚轮缩放
-      this.map.setMapStyleV2(ConfigJson); //地图图层个性化样式文件
-      this.map.setHeading(0); //(n*0)-(n*360)//地图Z轴转动角度，0：上北下南
-      this.map.setTilt(0); //0-90//地图纬度转动角度，0：从上至下，90：平行于地面
+      this.map = new BMapGL.Map('mapContainer') // 创建地图实例
+      var point = new BMapGL.Point(119.997283, 30.280812) // 创建点坐标
+      this.map.centerAndZoom(point, 19) // 初始化地图，设置中心点坐标和地图级别
+      this.map.enableScrollWheelZoom(true) //开启鼠标滚轮缩放
+      this.map.setMapStyleV2(ConfigJson) //地图图层个性化样式文件
+      this.map.setHeading(0) //(n*0)-(n*360)//地图Z轴转动角度，0：上北下南
+      this.map.setTilt(0) //0-90//地图纬度转动角度，0：从上至下，90：平行于地面
       // **********************************************************************************//
-      this.createLushu();
+      this.createLushu()
     },
     createLushu() {
       this.testData.forEach((item, index, arr) => {
-        item = new BMapGL.Point(item.lng, item.lat);
-      });
+        item = new BMapGL.Point(item.lng, item.lat)
+      })
 
       this.map.addOverlay(
         new BMapGL.Polyline(this.testData, { strokeColor: 'red' })
-      );
+      )
       this.lushu = new BMapGLLib.LuShu(this.map, [this.testData[0]], {
         defaultContent: '123',
         autoView: true, //是否开启自动视野调整，如果开启那么路书在运动过程中会根据视野自动调整
@@ -331,60 +331,60 @@ export default {
         ),
         // speed: 5,
         enableRotation: true //是否设置marker随着道路的走向进行旋转
-      });
+      })
 
-      console.log(this.lushu);
-      this.lushu.start();
+      console.log(this.lushu)
+      this.lushu.start()
       this.lushu.path = [
         { lng: 119.997283, lat: 30.280812 },
         { lng: 119.997355, lat: 30.273701 }
       ]
-      this.lushu.start();
-      // this.updateLushu([
-      //   { lng: 119.997283, lat: 30.280812 },
-      //   { lng: 119.997355, lat: 30.273701 }
-      // ]);
+      this.lushu.start()
+      this.updateLushu([
+        { lng: 119.997283, lat: 30.280812 },
+        { lng: 119.997355, lat: 30.273701 }
+      ]);
     },
     updateLushu(data) {
-      // var index = 0,
-      //   data = [this.data[0]];
-      // setInterval(() => {
-      //   if (data.length === 1) {
-      //     index += 1;
-      //     data.push(this.data[index]);
-      //     console.log(data);
-      // this.lushu.path = data;
-      // this.lushu.start();
-      //     // this.lushu.goPath(data);
-      //   } else {
-      //     index += 1;
-      //     data.push(this.data[index]);
-      //     data.shift();
-      //     console.log(data);
-      //     // var layer = new mapvgl.PointLayer({
-      //     //   color: 'red',
-      //     //   shape: 'circle', // 默认为圆形，可传square改为正方形
-      //     //   blend: 'lighter',
-      //     //   size: 10,
-      //     //   data: [
-      //     //     {
-      //     //       geometry: {
-      //     //         type: 'Point',
-      //     //         coordinates: this.data[index]
-      //     //       }
-      //     //     }
-      //     //   ]
-      //     // });
-      //     // this.view.addLayer(layer);
-      //     console.log(this.lushu);
-      //     this.lushu.path = data;
-      //     this.lushu.start();
-      //     // this.lushu.goPath(data);
-      //   }
-      // }, 1000);
+      var index = 0,
+        data = [this.data[0]]
+      setInterval(() => {
+        if (data.length === 1) {
+          index += 1
+          data.push(this.data[index])
+          console.log(data)
+          this.lushu.path = data
+          this.lushu.start()
+          // this.lushu.goPath(data);
+        } else {
+          index += 1
+          data.push(this.data[index])
+          data.shift()
+          console.log(data)
+          // var layer = new mapvgl.PointLayer({
+          //   color: 'red',
+          //   shape: 'circle', // 默认为圆形，可传square改为正方形
+          //   blend: 'lighter',
+          //   size: 10,
+          //   data: [
+          //     {
+          //       geometry: {
+          //         type: 'Point',
+          //         coordinates: this.data[index]
+          //       }
+          //     }
+          //   ]
+          // });
+          // this.view.addLayer(layer);
+          console.log(this.lushu)
+          this.lushu.path = data
+          this.lushu.start()
+          // this.lushu.goPath(data);
+        }
+      }, 1000)
     }
   }
-};
+}
 </script>
 
 <style scoped>

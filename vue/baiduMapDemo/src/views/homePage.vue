@@ -1,3 +1,10 @@
+<!--
+ * @Author: YanLong
+ * @Date: 2021-10-11 10:46:40
+ * @LastEditTime: 2022-02-16 11:04:06
+ * @LastEditors: YanLong
+ * @Description: 
+-->
 <template>
   <div id="homePage">
     <div class="test">
@@ -6,7 +13,7 @@
   </div>
 </template>
 <script>
-import MapContainer from '@/components/map/map4.vue'
+import MapContainer from '@/components/map/map3.vue'
 export default {
   name: 'homePage',
   components: { MapContainer },

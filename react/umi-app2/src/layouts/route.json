@@ -1,0 +1,46 @@
+[
+  
+  {
+  "url": "/",
+  "name": "首页",
+  "children": [{
+    "name": "企业信息",
+    "url": "/enterprise",
+    "children": [{
+      "name": "企业首页",
+      "url": "/enterprise/information"
+    }, {
+      "name": "企业备案",
+      "url": "/enterprise/record"
+    }, {
+      "name": "企业信息变更",
+      "url": "/enterprise/recordChange"
+    }]
+  }, {
+    "name": "产品信息",
+    "url": "/product",
+    "children": [{
+      "name": "产品升级备案",
+      "url": "/product/upgradeRecord"
+    }, {
+      "name": "产品初始备案",
+      "url": "/product/initialRecord"
+    }]
+  }, {
+    "name": "帮助服务",
+    "url": "/help",
+    "children": [{
+      "name": "最新进展",
+      "url": "/help/latestProcess"
+    }, {
+      "name": "通知公告",
+      "url": "/help/notice"
+    }, {
+      "name": "政策文件",
+      "url": "/help/policy"
+    }, {
+      "name": "问题与建议",
+      "url": "/help/advice"
+    }]
+  }]
+}]
